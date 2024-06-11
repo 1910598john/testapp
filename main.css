@@ -30,7 +30,7 @@
 .people-container{
     display: grid;
     overflow: auto;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     max-height: calc(100% - 200px);
 }
 .people-container > div{
@@ -196,7 +196,7 @@
     display: grid;
     overflow: auto;
     max-height: 100%;
-    grid-template-columns:  repeat(4, 1fr);
+    grid-template-columns:  repeat(3, 1fr);
 }
 
 .profile-window .profile-content > div{
