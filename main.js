@@ -424,7 +424,7 @@ $(".add-someone").click(function(event){
             Person address: (optional)
             <input type="text" placeholder="Address" id="address"/>
         </div>
-        <button class="add" style="width:90%;position:absolute;left:50%;bottom:10px;transform:translateX(-50%);">Add</button>
+        <button class="add" style="width:90%;position:absolute;left:50%;bottom:100px;transform:translateX(-50%);">Add</button>
     </div>`);
 
     $(".cancel").click(function(event){
