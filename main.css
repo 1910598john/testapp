@@ -4,6 +4,7 @@
     box-sizing: border-box;
     font-family: sans-serif;
     outline: none;
+    scroll-behavior: smooth;
 }
 .side-bar{
     position: fixed;
@@ -18,12 +19,12 @@
 .add-someone{
     padding: 10px;
     border-radius: 7px;
-    background: purple;
+    background: #0084ff;
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
     width: 80%;
-    bottom:100px;
+    bottom:15px;
     text-align: center;
     color: #fff;
 }
@@ -56,6 +57,45 @@
     border: none;
 }
 
+#typing div > div{
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #929496;
+    margin: 0 1px;
+}
+
+#typing div > div:nth-child(2) {
+    animation-name: typing1;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-fill-mode: forwards;
+    animation-direction: alternate;
+    transition: .5s;
+}
+
+#typing div > div:nth-child(3) {
+    animation-name: typing1;
+    animation-duration: 2s;
+    animation-delay: .3s;
+    animation-iteration-count: infinite;
+    animation-fill-mode: forwards;
+    transition: .5s;
+    animation-direction: alternate;
+}
+
+@keyframes typing1{
+    0%{
+        transform: translateY(-20%);
+    } 50% {
+        transform: translateY(20%);
+    } 100% {
+        transform: translateY(0%);
+    }
+}
+
+
+
 .user-input button {
     background: #fff;
     width: 20%;
@@ -74,6 +114,18 @@
     top: 0;
     background: #fff;
     z-index: 7;
+}
+
+.file-viewer{
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background: #000;
+    z-index: 1001;
+    display: grid;
+    place-items: center;
 }
 
 .notification{
@@ -126,7 +178,7 @@
 .pop-up-window button, .script-window button{
     padding: 5px 15px;
     border-radius: 7px;
-    background: purple;
+    background: #0084ff;
     color: #fff;
     border: none;
 }
@@ -138,7 +190,7 @@
 .pop-up-window .form input, .script-window .form input {
     width: 100%;
     padding: 5px;
-    border: 1px solid purple;
+    border: 1px solid #0084ff;
     margin-bottom: 10px;
     border-radius: 4px;
 }
@@ -170,7 +222,7 @@
 .profile-window button {
     padding: 5px 15px;
     border-radius: 7px;
-    background: purple;
+    background: #0084ff;
     color: #fff;
     border: none;
 }
