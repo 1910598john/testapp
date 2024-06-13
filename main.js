@@ -267,7 +267,7 @@ $(".user-input button").click(function(event){
             request.onsuccess = function(event) {
                 let scripts = event.target.result;
                 scripts.forEach(script => {
-                    if (script.person == currentPerson.id && userInput == script.input) {
+                    if (script.person == currentPerson.id && userInput.includes(script.input)) {
                         let sec = 0;
                         if (script.typing != '') {
                             sec = parseInt(script.typing) * 1000;
@@ -379,8 +379,6 @@ $(".user-input button").click(function(event){
                                             event.stopImmediatePropagation();
                                             document.body.insertAdjacentHTML("afterbegin", `
                                             <div class="file-viewer" id="fv">
-                                                
-                                                
                                             </div>`);
 
                                             $(this).clone().appendTo("#fv");
@@ -419,10 +417,6 @@ $(".user-input button").click(function(event){
                         
                     }
                 })
-
-                
-
-                
             }
         }
         
@@ -592,6 +586,10 @@ function viewProfile(id, src) {
                 })
                 container.innerHTML = "";
                 container.insertAdjacentHTML("afterbegin", `${content}`);
+                
+                $(".profile-content > div").click(function(event){///!!!!!
+                    event.stopImmediatePropagation();
+                })
             };
         
             $(".profile-buttons > div").click(function(event){
