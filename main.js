@@ -1,9 +1,6 @@
 var hidden = false;
-
 var db;
-
 var currentPerson;
-
 if (!window.indexedDB) {
     console.log("Your browser doesn't support a stable version of IndexedDB.");
 } else {
@@ -23,7 +20,6 @@ if (!window.indexedDB) {
         let objectStore = transaction.objectStore("people");
 
         let request = objectStore.getAll();
-
         request.onsuccess = function(event) {
             console.log("Data retrieved successfully:", event.target.result);
             let content = "";
@@ -35,9 +31,8 @@ if (!window.indexedDB) {
                 <div data-person="${person.id}" data-name="${person.name}" data-src="${person.src}" data-age="${person.age}" data-address="${person.address}" data-p='${p}'>
                     <img src="${person.src}" style="width:100%;height:100%;object-fit:cover;"/>
                 </div>`;
-            }); 
+            });
             peopleContainer.insertAdjacentHTML("afterbegin", `${content}`);
-
             $(".people-container > div").click(function(event){
                 event.stopImmediatePropagation();
                 $("#chat").html("");
@@ -66,7 +61,7 @@ if (!window.indexedDB) {
                     let chats = event.target.result;
                     chats.forEach(chat => {
                         if (chat.person == currentPerson.id) {
-                            console.log(chat.id + " " + chat.chat);
+                            //console.log(chat.id + " " + chat.chat);
                             if (chat.type == 'text' && chat.sent == 0) {
                                 if (chat.chat != '') {
                                     chatContainer.insertAdjacentHTML("beforeend", `
@@ -75,6 +70,7 @@ if (!window.indexedDB) {
                                     </div>`);
                                 }
                             }
+
                             if (chat.type == 'text' && chat.sent == 1) {
                                 if (chat.chat != '') {
                                     chatContainer.insertAdjacentHTML("beforeend", `
@@ -116,41 +112,34 @@ if (!window.indexedDB) {
                                         </div>
                                     </div>`);
                                 }
-                            } 
-
-                            
-                            
+                            }
                         }
                     })
 
                     const container = document.getElementById('chat'); // Replace with your container's ID or selector
                     container.scrollTop = container.scrollHeight;
 
-                    $("video").click(function(event){
-                                            
+                    $(".chat video").click(function(event){
                         event.stopImmediatePropagation();
                         document.body.insertAdjacentHTML("afterbegin", `
-                        <div class="file-viewer" id="fv">
-                            
-                        </div>
+                        <div class="file-viewer" id="fv"></div>
                         `);
 
                         $(this).clone().appendTo("#fv");
                         $("#fv video").css({
-                            "width" : "80vw",
-                            "height": "90vh",
+                            "width" : "100vw",
                             "object-fit" : "contain"
                         })
 
                         $("#fv video").attr("autoplay", true);
 
-                        $("#fv video").click(function(event){
+                        $(window).on("popstate", function(event){
                             event.stopImmediatePropagation();
                             $(".file-viewer").remove();
                         })
                     })
 
-                    $("img").click(function(event){
+                    $(".chat img").click(function(event){
                         event.stopImmediatePropagation();
                         document.body.insertAdjacentHTML("afterbegin", `
                         <div class="file-viewer" id="fv">
@@ -160,16 +149,14 @@ if (!window.indexedDB) {
 
                         $(this).clone().appendTo("#fv");
                         $("#fv img").css({
-                            "width" : "80vw",
-                            "height": "90vh",
+                            "width" : "100vw",
                             "object-fit" : "contain"
                         })
 
-                        $("#fv img").click(function(event){
+                        $(window).on("popstate", function(event){
                             event.stopImmediatePropagation();
                             $(".file-viewer").remove();
                         })
-
                     })
                 }
 
@@ -351,12 +338,11 @@ $(".user-input button").click(function(event){
 
                                             $(this).clone().appendTo("#fv");
                                             $("#fv img").css({
-                                                "width" : "80vw",
-                                                "height": "90vh",
+                                                "width" : "100vw",
                                                 "object-fit" : "contain"
                                             })
 
-                                            $("#fv img").click(function(event){
+                                            $(window).on("popstate", function(event){
                                                 event.stopImmediatePropagation();
                                                 $(".file-viewer").remove();
                                             })
@@ -395,14 +381,13 @@ $(".user-input button").click(function(event){
 
                                             $(this).clone().appendTo("#fv");
                                             $("#fv video").css({
-                                                "width" : "80vw",
-                                                "height": "90vh",
+                                                "width" : "100vw",
                                                 "object-fit" : "contain"
                                             })
 
                                             $("#fv video").attr("autoplay", true);
 
-                                            $("#fv video").click(function(event){
+                                            $(window).on("popstate", function(event){
                                                 event.stopImmediatePropagation();
                                                 $(".file-viewer").remove();
                                             })
@@ -787,6 +772,15 @@ $(".add-someone").click(function(event){
             }
 
             currentPerson = obj;
+
+            let peopleContainer = document.getElementById("people-container");
+            let content = "";
+            content += `
+            <div data-person="${currentPerson.id}" data-name="${currentPerson.name}" data-src="${currentPerson.src}" data-age="${currentPerson.age}" data-address="${currentPerson.address}" data-p='${currentPerson}'>
+                <img src="${currentPerson.src}" style="width:100%;height:100%;object-fit:cover;"/>
+            </div>`;
+
+            peopleContainer.insertAdjacentHTML("afterbegin", `${content}`);
 
             $(".pop-up-window").remove();
             document.body.insertAdjacentHTML("afterbegin", `
