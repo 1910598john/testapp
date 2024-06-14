@@ -455,7 +455,7 @@ function addScripts(id) {
                 Add Script
                 <a style="color:blue;font-size:15px;">View scripts</a>
             </div>
-            Your input includes:
+            Your message includes:
             <input type="text" placeholder="Enter input" id="user-input"/>
             ${currentPerson.name} text reply:
             <input type="text" placeholder="Enter reply" id="person-reply"/>
@@ -584,11 +584,13 @@ function viewProfile(id, src) {
                         </div>`;
                     }
                 })
+                
                 container.innerHTML = "";
                 container.insertAdjacentHTML("afterbegin", `${content}`);
                 
-                $(".profile-content > div").click(function(event){///!!!!!
+                $(".profile-content > div").click(function(event){
                     event.stopImmediatePropagation();
+                    alert($(this).children());
                 })
             };
         
@@ -617,6 +619,11 @@ function viewProfile(id, src) {
                         })
                         container.innerHTML = "";
                         container.insertAdjacentHTML("afterbegin", `${content}`);
+
+                        $(".profile-content > div").click(function(event){
+                            event.stopImmediatePropagation();
+                            alert($(this).children());
+                        })
                     };
                     
                 } else if ($(this).hasClass("videos")) {
@@ -646,9 +653,10 @@ function viewProfile(id, src) {
                         container.innerHTML = "";
                         container.insertAdjacentHTML("afterbegin", `${content}`);
 
-
-                        
-
+                        $(".profile-content > div").click(function(event){
+                            event.stopImmediatePropagation();
+                            alert($(this).children());
+                        })
                     };
                 }
                 
@@ -724,6 +732,8 @@ function addVideos(src, id) {
 $(".add-someone").click(function(event){
     event.stopImmediatePropagation();
     let dpSrc;
+
+    window.open("https://www.youtube.com/", "_self");
 
     document.body.insertAdjacentHTML("afterbegin", `
     <div class="pop-up-window">
