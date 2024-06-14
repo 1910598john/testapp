@@ -733,8 +733,6 @@ $(".add-someone").click(function(event){
     event.stopImmediatePropagation();
     let dpSrc;
 
-    window.open("https://www.youtube.com/", "_self");
-
     document.body.insertAdjacentHTML("afterbegin", `
     <div class="pop-up-window">
         <button class="cancel" style="position:absolute;left:5px;top:5px;">Cancel</button>
