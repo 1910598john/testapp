@@ -15,17 +15,19 @@
 <div style="padding:0 20px;display:flex;flex-direction:column;">
     <img src="./img/welcome.gif" style="height:200px;"/>
     Name:
-    <input style="border:1px solid #0084ff;padding:5px;border-radius:4px;margin-bottom:5px;" id="name"  type="text" placeholder="Enter your name"/>
+    <input style="border:1px solid #0084ff;padding:5px;border-radius:4px;margin-bottom:5px;outline:none;" id="name"  type="text" placeholder="Enter your name"/>
     User ID: 
-    <input style="border:1px solid #0084ff;padding:5px;border-radius:4px;margin-bottom:5px;" id="user-id" type="text" placeholder="Enter user ID"/>
+    <input style="border:1px solid #0084ff;padding:5px;border-radius:4px;margin-bottom:5px;outline:none;" id="user-id" type="text" placeholder="Enter user ID"/>
     4 digits PIN:
-    <input style="border:1px solid #0084ff;padding:5px;border-radius:4px;" type="number" id="pin" placeholder="Enter 4 digits pin"/>
+    <input style="border:1px solid #0084ff;padding:5px;border-radius:4px;outline:none;" type="number" id="pin" placeholder="Enter 4 digits pin"/>
     <br>
     <button style="padding: 15px;
     border-radius: 30px;
     background: #0084ff;
     color: #fff;
     border: none;" class="start">START</button>
+    <br>
+    <p style="text-align: center;font-size:13px;">You agree to our <a style="color:#0084ff;cursor: pointer;">Terms of Use</a></p>
 </div>
 <script>
 var db2;
@@ -46,22 +48,26 @@ if (!window.indexedDB) {
 }
 $(".start").click(function(event){
     event.stopImmediatePropagation();
-    let transaction = db2.transaction(["user"], "readwrite");
-    let objectStore = transaction.objectStore("user");
-    let getRequest = objectStore.get(1);
-    getRequest.onsuccess = function(event) {
-        let data = event.target.result;
-        if (!data) {
-            let newData = { name: $("#name").val(), user_id : $("#user-id").val(), pin: $("#pin").val() };
-            let addRequest = objectStore.add(newData);
-            addRequest.onsuccess = function() {
+
+    if ($("#name").val() !== '' && $("#user-id").val() !== '' && $("#pin").val() !== '') {
+        let transaction = db2.transaction(["user"], "readwrite");
+        let objectStore = transaction.objectStore("user");
+        let getRequest = objectStore.get(1);
+        getRequest.onsuccess = function(event) {
+            let data = event.target.result;
+            if (!data) {
+                let newData = { name: $("#name").val(), user_id : $("#user-id").val(), pin: $("#pin").val() };
+                let addRequest = objectStore.add(newData);
+                addRequest.onsuccess = function() {
+                    window.open("./", '_self');
+                    console.log("Started!");
+                };
+            } else {
                 window.open("./", '_self');
-                console.log("Started!");
-            };
-        } else {
-            window.open("./", '_self');
+            }
         }
     }
+    
 })
 </script>
 </body>
