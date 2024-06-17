@@ -827,7 +827,7 @@ function addScripts(id) {
     
         $(".add-script").click(function(event){
             event.stopImmediatePropagation();
-            if ($("#user-input").val() !== '' && $("#person-reply").val() !== '') {
+            if ($("#user-input").val() !== '') {
                 let userInput = $("#user-input").val();
                 let textReply = $("#person-reply").val();
                 let sec = $("#sec").val();
