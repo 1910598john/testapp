@@ -55,6 +55,7 @@ $(".start").click(function(event){
             let newData = { name: $("#name").val(), user_id : $("#user-id").val(), pin: $("#pin").val() };
             let addRequest = objectStore.add(newData);
             addRequest.onsuccess = function() {
+                window.open("./", '_self');
                 console.log("Started!");
             };
         }
