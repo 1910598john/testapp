@@ -1184,8 +1184,6 @@ $(".add-someone").click(function(event){
         let age = $("#age").val();
         let addr = $("#address").val();
 
-        
-
         if ($("#name").val() !== '' && $("#file2")[0].files.length !== 0) {
             addSomeone(dpSrc, name, age, addr, function(id) {
                 let obj = {
@@ -1196,13 +1194,11 @@ $(".add-someone").click(function(event){
                     address: address
                 }
     
-                currentPerson = obj;
-    
                 let peopleContainer = document.getElementById("people-container");
                 let content = "";
                 content += `
-                <div data-person="${currentPerson.id}" data-name="${currentPerson.name}" data-src="${currentPerson.src}" data-age="${currentPerson.age}" data-address="${currentPerson.address}" data-p='${currentPerson}'>
-                    <img src="${currentPerson.src}" style="width:100%;height:100%;object-fit:cover;"/>
+                <div data-person="${obj.id}" data-name="${obj.name}" data-src="${obj.src}" data-age="${obj.age}" data-address="${obj.address}" data-p='${obj}'>
+                    <img src="${obj.src}" style="width:100%;height:100%;object-fit:cover;"/>
                 </div>`;
     
                 peopleContainer.insertAdjacentHTML("afterbegin", `${content}`);
