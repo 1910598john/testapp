@@ -124,7 +124,7 @@ if (!window.indexedDB) {
         getRequest.onsuccess = function(event) {
             let data = event.target.result;
             if (!data) {
-                window.open('./login/', '_self');
+                window.open('../login/', '_self');
             } else {
                 $("#current-user-name").html(data.name);
 
