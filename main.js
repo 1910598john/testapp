@@ -184,7 +184,7 @@ if (!window.indexedDB) {
                                         if (chat.chat != '') {
                                             chatContainer.insertAdjacentHTML("beforeend", `
                                             <div style="display:flex;justify-content:start;width:100%;padding:1px 10px 2px;">
-                                                <div style="padding:10px;border-radius:15px;background:#f0f2f5;color:#000;max-width:60%;word-wrap:break-word;">
+                                                <div style="padding:5px 10px;border-radius:15px;background:#f0f2f5;color:#000;max-width:60%;word-wrap:break-word;">
                                                     ${chat.chat}
                                                 </div>
                                             </div>`);
@@ -414,7 +414,7 @@ $(".user-input button").click(function(event){
                                 if (script.text_reply != "") {
                                     chatContainer.insertAdjacentHTML("beforeend", `
                                     <div style="display:flex;justify-content:start;width:100%;padding:1px 10px 2px;">
-                                        <div style="padding:10px;border-radius:15px;background:#f0f2f5;color:#000;max-width:60%;word-wrap:break-word;">
+                                        <div style="padding:5px 10px;border-radius:15px;background:#f0f2f5;color:#000;max-width:60%;word-wrap:break-word;">
                                             ${script.text_reply}
                                         </div>
                                     </div>`);
