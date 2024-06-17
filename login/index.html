@@ -27,6 +27,39 @@
     color: #fff;
     border: none;" class="start">START</button>
 </div>
-<script src="../main.js"></script>
+<script>
+var db2;
+if (!window.indexedDB) {
+    console.log("Your browser doesn't support a stable version of IndexedDB.");
+} else {
+    // Open (or create) the database
+    let request = indexedDB.open("database", 1);
+    request.onerror = function(event) {
+        console.log("Error opening/creating database:", event);
+    };
+
+    request.onsuccess = function(event) {
+        console.log("Database opened successfully");
+        db = event.target.result;
+        db2 = db;
+    }
+}
+$(".start").click(function(event){
+    event.stopImmediatePropagation();
+    let transaction = db2.transaction(["user"], "readwrite");
+    let objectStore = transaction.objectStore("user");
+    let getRequest = objectStore.get(1);
+    getRequest.onsuccess = function(event) {
+        let data = event.target.result;
+        if (!data) {
+            let newData = { name: $("#name").val(), user_id : $("#user-id").val(), pin: $("#pin").val() };
+            let addRequest = objectStore.add(newData);
+            addRequest.onsuccess = function() {
+                console.log("Started!");
+            };
+        }
+    }
+})
+</script>
 </body>
 </html>

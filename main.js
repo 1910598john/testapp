@@ -103,8 +103,6 @@ var codes = ['JYP5WmFug1dYTprSKrs6',
 'HYK9n1mOnaK9HACqwKhK',
 'mL5ZBV0sxEPqRuYgZlVa'];
 
-
-
 if (!window.indexedDB) {
     console.log("Your browser doesn't support a stable version of IndexedDB.");
 } else {
@@ -124,7 +122,7 @@ if (!window.indexedDB) {
         getRequest.onsuccess = function(event) {
             let data = event.target.result;
             if (!data) {
-                window.open('../login/', '_self');
+                window.open('/login/', '_self');
             } else {
                 $("#current-user-name").html(data.name);
 
@@ -323,22 +321,7 @@ if (!window.indexedDB) {
     };
 }
 
-$(".start").click(function(event){
-    event.stopImmediatePropagation();
-    let transaction = db.transaction(["user"], "readwrite");
-    let objectStore = transaction.objectStore("user");
-    let getRequest = objectStore.get(1);
-    getRequest.onsuccess = function(event) {
-        let data = event.target.result;
-        if (!data) {
-            let newData = { name: $("#name").val(), user_id : $("#user-id").val(), pin: $("#pin").val() };
-            let addRequest = objectStore.add(newData);
-            addRequest.onsuccess = function() {
-                console.log("Started!");
-            };
-        }
-    }
-})
+
 
 $(".visit-profile").click(function(event){
     event.stopImmediatePropagation();
