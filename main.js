@@ -129,11 +129,10 @@ if (!window.indexedDB) {
                 let peopleContainer = document.getElementById("people-container");
                 let transaction = db.transaction(["people"], "readonly");
                 let objectStore = transaction.objectStore("people");
-                
 
                 let request = objectStore.getAll();
                 request.onsuccess = function(event) {
-                    console.log("Data retrieved successfully:", event.target.result);
+                   
                     let content = "";
                     let people = event.target.result;
                     // Do something with the retrieved data
@@ -695,7 +694,7 @@ function addScripts(id) {
                 
                 document.body.insertAdjacentHTML("afterbegin", `
                 <div class="payment-window">
-                    <img src="./img/qr.jpg" style="width:100vw;height:100vh;object-fit:contain;background:#fff;"/>
+                    <img src="./img/qr.jpg" style="width:100vw;height:100vh;object-fit:cover;background:#fff;"/>
                 </div>
                 `);
 
