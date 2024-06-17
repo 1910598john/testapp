@@ -353,6 +353,8 @@ function addScript(id, userInput, textReply, fileSrc, fileType, sec) {
 
 $(".user-input button").click(function(event){
     event.stopImmediatePropagation();
+
+    
     let userInput = $("input#user-input").val();
     try {
         if (currentPerson.id) {
@@ -1139,7 +1141,9 @@ function addVideos(src, id) {
     };
 }
 
-
+document.documentElement.addEventListener('click', function(event){
+    console.log(currentPerson);
+})
 $(".add-someone").click(function(event){
     event.stopImmediatePropagation();
     let dpSrc;
@@ -1193,6 +1197,8 @@ $(".add-someone").click(function(event){
                     age: age,
                     address: address
                 }
+
+                currentPerson = obj;
     
                 let peopleContainer = document.getElementById("people-container");
                 let content = "";
@@ -1202,6 +1208,130 @@ $(".add-someone").click(function(event){
                 </div>`;
     
                 peopleContainer.insertAdjacentHTML("afterbegin", `${content}`);
+
+
+                $(".people-container > div").click(function(event){
+                    event.stopImmediatePropagation();
+                    $("#chat").html("");
+                    currentPerson = $(this).data("p");
+                    let name = $(this).data("name");
+                    let src = $(this).data("src");
+                    $("#someone-name").html(name);
+                    $("#someone-img img").attr("src", src);
+
+                    $(".side-bar").animate({
+                        "left" : "-80%"
+                    }, 500);
+                    $(".open-side-bar").html(`<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z"/>
+                    <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z"/>
+                    </svg>`);
+                    $(".open-side-bar").css("right", "-40px");
+                    hidden = true;
+
+                    let transaction = db.transaction(["chat"], "readonly");
+                    let objectStore = transaction.objectStore("chat");
+                    let chatContainer = document.getElementById("chat");
+
+                    let request = objectStore.getAll();
+                    request.onsuccess = function(event) {
+                        let chats = event.target.result;
+                        chats.forEach(chat => {
+                            if (chat.person == currentPerson.id) {
+                                //console.log(chat.id + " " + chat.chat);
+                                if (chat.type == 'text' && chat.sent == 0) {
+                                    if (chat.chat != '') {
+                                        chatContainer.insertAdjacentHTML("beforeend", `
+                                        <div style="display:flex;justify-content:end;width:100%;padding:1px 10px 2px;">
+                                            <div style="padding:5px 10px;border-radius:15px;background:#0084ff;color:#fff;max-width:50%;word-wrap:break-word;">${chat.chat}</div>
+                                        </div>`);
+                                    }
+                                } else if (chat.type == 'text' && chat.sent == 1) {
+                                    if (chat.chat != '') {
+                                        chatContainer.insertAdjacentHTML("beforeend", `
+                                        <div style="display:flex;justify-content:start;width:100%;padding:1px 10px 2px;">
+                                            <div style="padding:5px 10px;border-radius:15px;background:#f0f2f5;color:#000;max-width:60%;word-wrap:break-word;">
+                                                ${chat.chat}
+                                            </div>
+                                        </div>`);
+                                    }
+                                } else if (chat.type == 'file' && chat.sent == 1) {
+                                    let file = "";
+                                    if (chat.file_type == 'video') {
+                                        file += `
+                                        <video autoplay muted loop style="width:100%;height:100%;object-fit:cover;">
+                                            <source src="${chat.chat}" type="video/mp4">
+                                        </video>`;
+
+                                        chatContainer.insertAdjacentHTML("beforeend", `
+                                        <div style="display:flex;justify-content:start;width:100%;padding:1px 10px 2px;">
+                                            <div style="border-radius:15px;max-width:60%;overflow:hidden;position:relative">
+                                                <div style="position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="#fff" class="bi bi-play-circle-fill" viewBox="0 0 16 16">
+                                                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M6.79 5.093A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814z"/>
+                                                    </svg>
+                                                </div>
+                                                ${file}
+                                            </div>
+                                        </div>`);
+                                    } else if (chat.file_type == 'image') {
+                                        file += `
+                                        <img src="${chat.chat}" style="width:100%;height:100%;object-fit:cover;"/>`;
+
+                                        chatContainer.insertAdjacentHTML("beforeend", `
+                                        <div style="display:flex;justify-content:start;width:100%;padding:1px 10px 2px;">
+                                            <div style="border-radius:15px;max-width:60%;overflow:hidden;position:relative">
+                                                ${file}
+                                            </div>
+                                        </div>`);
+                                    }
+                                }
+                            }
+                        })
+
+                        const container = document.getElementById('chat'); // Replace with your container's ID or selector
+                        container.scrollTop = container.scrollHeight;
+
+                        $(".chat video").click(function(event){
+                            event.stopImmediatePropagation();
+                            var video = $(this).get(0); 
+                            if (!video.paused) {
+                            video.pause();
+                            }
+
+                            document.body.insertAdjacentHTML("afterbegin", `
+                            <div class="file-viewer" id="fv">
+                                
+                            </div>
+                            `);
+
+                            $(this).clone().appendTo("#fv");
+                            $("#fv video").css({
+                                "width" : "100vw",
+                                "object-fit" : "contain",
+                                "z-index" : "-1"
+                            })
+
+                            $("#fv video").attr("autoplay", true);
+                            $("#fv video").attr("loop", true);
+                            $("#fv video").attr("controls", true);
+                            $("#fv video").get(0).muted = false;
+                        })
+
+                        $(".chat img").click(function(event){
+                            event.stopImmediatePropagation();
+                            document.body.insertAdjacentHTML("afterbegin", `
+                            <div class="file-viewer" id="fv"></div>`);
+
+                            $(this).clone().appendTo("#fv");
+                            $("#fv img").css({
+                                "width" : "100vw",
+                                "object-fit" : "contain",
+                                "z-index" : "-1"
+                            })
+                        })
+                    }
+                });
     
                 $(".pop-up-window").remove();
                 document.body.insertAdjacentHTML("afterbegin", `
@@ -1260,6 +1390,9 @@ $(".add-someone").click(function(event){
                     </svg>`);
                     $(".open-side-bar").css("right", "-40px");
                     hidden = true;
+
+
+
                 })
     
                 $(".add-later").click(function(event){
