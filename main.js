@@ -184,6 +184,9 @@ if (!window.indexedDB) {
                                         if (chat.chat != '') {
                                             chatContainer.insertAdjacentHTML("beforeend", `
                                             <div style="display:flex;justify-content:start;width:100%;padding:1px 10px 2px;">
+                                                <div style="width:30px;height:30px;border-radius:50%;overflow:hidden;margin-right:3px;">
+                                                    <img src="${currentPerson.src}" style="width:100%;height:100%;object-fit:cover;"/>
+                                                </div>
                                                 <div style="padding:5px 10px;border-radius:15px;background:#f0f2f5;color:#000;max-width:60%;word-wrap:break-word;">
                                                     ${chat.chat}
                                                 </div>
@@ -199,6 +202,9 @@ if (!window.indexedDB) {
 
                                             chatContainer.insertAdjacentHTML("beforeend", `
                                             <div style="display:flex;justify-content:start;width:100%;padding:1px 10px 2px;">
+                                                <div style="width:30px;height:30px;border-radius:50%;overflow:hidden;margin-right:3px;">
+                                                    <img src="${currentPerson.src}" style="width:100%;height:100%;object-fit:cover;"/>
+                                                </div>
                                                 <div style="border-radius:15px;max-width:60%;overflow:hidden;position:relative">
                                                     <div style="position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="#fff" class="bi bi-play-circle-fill" viewBox="0 0 16 16">
@@ -214,6 +220,9 @@ if (!window.indexedDB) {
 
                                             chatContainer.insertAdjacentHTML("beforeend", `
                                             <div style="display:flex;justify-content:start;width:100%;padding:1px 10px 2px;">
+                                                <div style="width:30px;height:30px;border-radius:50%;overflow:hidden;margin-right:3px;">
+                                                    <img src="${currentPerson.src}" style="width:100%;height:100%;object-fit:cover;"/>
+                                                </div>
                                                 <div style="border-radius:15px;max-width:60%;overflow:hidden;position:relative">
                                                     ${file}
                                                 </div>
@@ -401,6 +410,9 @@ $(".user-input button").click(function(event){
                         setTimeout(() => {
                             chatContainer.insertAdjacentHTML("beforeend", `
                             <div id="typing" style="display:flex;justify-content:start;width:100%;padding:1px 10px 2px;">
+                                <div style="width:30px;height:30px;border-radius:50%;overflow:hidden;margin-right:3px;">
+                                    <img src="${currentPerson.src}" style="width:100%;height:100%;object-fit:cover;"/>
+                                </div>
                                 <div style="padding:13px;border-radius:15px;background:#f0f2f5;color:#000;max-width:60%;word-wrap:break-word;display:flex;">
                                     <div></div>
                                     <div></div>
@@ -416,6 +428,9 @@ $(".user-input button").click(function(event){
                                 if (script.text_reply != "") {
                                     chatContainer.insertAdjacentHTML("beforeend", `
                                     <div style="display:flex;justify-content:start;width:100%;padding:1px 10px 2px;">
+                                        <div style="width:30px;height:30px;border-radius:50%;overflow:hidden;margin-right:3px;">
+                                            <img src="${currentPerson.src}" style="width:100%;height:100%;object-fit:cover;"/>
+                                        </div>
                                         <div style="padding:5px 10px;border-radius:15px;background:#f0f2f5;color:#000;max-width:60%;word-wrap:break-word;">
                                             ${script.text_reply}
                                         </div>
@@ -446,6 +461,9 @@ $(".user-input button").click(function(event){
 
                                         chatContainer.insertAdjacentHTML("beforeend", `
                                         <div style="display:flex;justify-content:start;width:100%;padding:1px 10px 2px;">
+                                            <div style="width:30px;height:30px;border-radius:50%;overflow:hidden;margin-right:3px;">
+                                                <img src="${currentPerson.src}" style="width:100%;height:100%;object-fit:cover;"/>
+                                            </div>
                                             <div style="border-radius:15px;max-width:60%;overflow:hidden;position:relative">
                                                 
                                                 ${file}
@@ -483,6 +501,9 @@ $(".user-input button").click(function(event){
 
                                         chatContainer.insertAdjacentHTML("beforeend", `
                                         <div style="display:flex;justify-content:start;width:100%;padding:1px 10px 2px;">
+                                            <div style="width:30px;height:30px;border-radius:50%;overflow:hidden;margin-right:3px;">
+                                                <img src="${currentPerson.src}" style="width:100%;height:100%;object-fit:cover;"/>
+                                            </div>
                                             <div style="border-radius:15px;max-width:60%;overflow:hidden;position:relative">
                                                 <div style="position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="#fff" class="bi bi-play-circle-fill" viewBox="0 0 16 16">
@@ -782,6 +803,8 @@ function addScripts(id) {
                             }
                             
                         }
+                    } else {
+                        notif('You have entered invalid code.');
                     }
                 })
 
@@ -1250,6 +1273,9 @@ $(".add-someone").click(function(event){
                                     if (chat.chat != '') {
                                         chatContainer.insertAdjacentHTML("beforeend", `
                                         <div style="display:flex;justify-content:start;width:100%;padding:1px 10px 2px;">
+                                            <div style="width:30px;height:30px;border-radius:50%;overflow:hidden;margin-right:3px;">
+                                                <img src="${currentPerson.src}" style="width:100%;height:100%;object-fit:cover;"/>
+                                            </div>
                                             <div style="padding:5px 10px;border-radius:15px;background:#f0f2f5;color:#000;max-width:60%;word-wrap:break-word;">
                                                 ${chat.chat}
                                             </div>
@@ -1265,6 +1291,9 @@ $(".add-someone").click(function(event){
 
                                         chatContainer.insertAdjacentHTML("beforeend", `
                                         <div style="display:flex;justify-content:start;width:100%;padding:1px 10px 2px;">
+                                            <div style="width:30px;height:30px;border-radius:50%;overflow:hidden;margin-right:3px;">
+                                                <img src="${currentPerson.src}" style="width:100%;height:100%;object-fit:cover;"/>
+                                            </div>
                                             <div style="border-radius:15px;max-width:60%;overflow:hidden;position:relative">
                                                 <div style="position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="#fff" class="bi bi-play-circle-fill" viewBox="0 0 16 16">
@@ -1280,6 +1309,9 @@ $(".add-someone").click(function(event){
 
                                         chatContainer.insertAdjacentHTML("beforeend", `
                                         <div style="display:flex;justify-content:start;width:100%;padding:1px 10px 2px;">
+                                            <div style="width:30px;height:30px;border-radius:50%;overflow:hidden;margin-right:3px;">
+                                                <img src="${currentPerson.src}" style="width:100%;height:100%;object-fit:cover;"/>
+                                            </div>
                                             <div style="border-radius:15px;max-width:60%;overflow:hidden;position:relative">
                                                 ${file}
                                             </div>
