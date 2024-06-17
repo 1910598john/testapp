@@ -22,8 +22,10 @@
             </svg>
         </div>
         <div class="user" style="display: flex;align-items: center;padding:10px;border-bottom: 1px solid rgba(0,0,0,0.1);">
-            <div style="width: 50px;height: 50px;border-radius: 50%;box-shadow: 0 0 2px #000;margin-right: 5px;"></div>
-            <div>JM Catamora</div>
+            <div style="width: 50px;height: 50px;border-radius: 50%;box-shadow: 0 0 2px #000;margin-right: 5px;overflow:hidden;">
+                <img src="./img/default.png" alt="profile" style="width: 100%;height: 100%;object-fit: cover;"/>
+            </div>
+            <div id="current-user-name">...</div>
         </div>
         <div class="people-container" id="people-container"></div>
         <div class="add-someone">Add someone</div>
@@ -36,7 +38,7 @@
             </svg>
             <div style="display: flex;flex-direction: column;align-items: center;">
                 <div id="someone-img" style="width: 50px;height: 50px;border-radius: 50%;box-shadow: 0 0 2px #000;overflow:hidden;margin-bottom: 5px;">
-                    <img src="" alt="profile" style="width: 100%;height: 100%;object-fit: cover;"/>
+                    <img src="./img/default.png" alt="profile" style="width: 100%;height: 100%;object-fit: cover;"/>
                 </div>
                 <div id="someone-name" style="font-weight: bold;">Someone</div>
                 <a class="visit-profile" style="color:blue">
