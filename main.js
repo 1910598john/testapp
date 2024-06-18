@@ -139,10 +139,12 @@ if (!window.indexedDB) {
                     people.forEach(person => {
                         let p = JSON.stringify(person);
                         content += `
-                        <div data-person="${person.id}" data-name="${person.name}" data-src="${person.src}" data-age="${person.age}" data-address="${person.address}" data-p='${p}'>
+                        <div style="position:relative;" data-person="${person.id}" data-name="${person.name}" data-src="${person.src}" data-age="${person.age}" data-address="${person.address}" data-p='${p}'>
+                            <div style="text-align:center;font-size:10px;position:absolute;left:50%;transform:translateX(-50%);width:80%;word-wrap:break-word;bottom:5px;color:#fff;text-shadow:0 0 2px #000;">${person.name}</div>
                             <img src="${person.src}" style="width:100%;height:100%;object-fit:cover;"/>
                         </div>`;
                     });
+
                     peopleContainer.insertAdjacentHTML("afterbegin", `${content}`);
                     $(".people-container > div").click(function(event){
                         event.stopImmediatePropagation();
@@ -1226,12 +1228,12 @@ $(".add-someone").click(function(event){
                 let peopleContainer = document.getElementById("people-container");
                 let content = "";
                 content += `
-                <div data-person="${obj.id}" data-name="${obj.name}" data-src="${obj.src}" data-age="${obj.age}" data-address="${obj.address}" data-p='${obj}'>
+                <div style="position:relative;" data-person="${obj.id}" data-name="${obj.name}" data-src="${obj.src}" data-age="${obj.age}" data-address="${obj.address}" data-p='${obj}'>
+                    <div style="text-align:center;font-size:10px;position:absolute;left:50%;transform:translateX(-50%);width:80%;word-wrap:break-word;bottom:10px;color:#fff;text-shadow:0 0 2px #000;">${obj.name}</div>
                     <img src="${obj.src}" style="width:100%;height:100%;object-fit:cover;"/>
                 </div>`;
     
                 peopleContainer.insertAdjacentHTML("afterbegin", `${content}`);
-
 
                 $(".people-container > div").click(function(event){
                     event.stopImmediatePropagation();
