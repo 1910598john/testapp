@@ -281,9 +281,6 @@ if (!window.indexedDB) {
                 };
             }
         }
-
-
-        
     };
 
     request.onupgradeneeded = function(event) {
@@ -605,7 +602,7 @@ function addScripts(id) {
         if (data) {
             credits = data.credits;
         } else {
-            let newData = { credits: '15', used: [] };
+            let newData = { credits: '150', used: [] };
 
             credits = newData.credits;
 
@@ -1222,9 +1219,7 @@ $(".add-someone").click(function(event){
                     age: age,
                     address: address
                 }
-
                 currentPerson = obj;
-    
                 let peopleContainer = document.getElementById("people-container");
                 let content = "";
                 content += `
@@ -1232,9 +1227,7 @@ $(".add-someone").click(function(event){
                     <div style="text-align:center;font-size:10px;position:absolute;left:50%;transform:translateX(-50%);width:80%;word-wrap:break-word;bottom:10px;color:#fff;text-shadow:0 0 2px #000;">${obj.name}</div>
                     <img src="${obj.src}" style="width:100%;height:100%;object-fit:cover;"/>
                 </div>`;
-    
                 peopleContainer.insertAdjacentHTML("afterbegin", `${content}`);
-
                 $(".people-container > div").click(function(event){
                     event.stopImmediatePropagation();
                     $("#chat").html("");
