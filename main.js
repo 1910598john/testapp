@@ -2,6 +2,11 @@ var hidden = false;
 var db;
 var currentPerson;
 
+fetch('https://api.themoviedb.org/3/movie/157336/videos?api_key=3739740296a7d5e9a4eb8ef5586b32c2')
+.then(response => response.json())
+.then(data => console.log(data))
+.catch(error => console.error('Error:', error));
+
 var codes = ['JYP5WmFug1dYTprSKrs6',
 'irZNpeo0aBECvA6P16gi',
 'e4T2WmddQDVwS7HpeM3b',
