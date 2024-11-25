@@ -15,10 +15,13 @@ function openFullscreen() {
   }
 }
 
+let fs = false;
 
 document.documentElement.addEventListener("click", function(event){
-    openFullscreen();
-
+    if (!fs) {
+        openFullscreen();
+        fs = true;
+    }
 })
 
 
@@ -661,6 +664,7 @@ function addScripts(id) {
         </div>`);
     
         $("input[type='file']").on('change', function(event) {
+            fs = false;
             let file = event.target.files[0];
             if (file) {
                 const reader = new FileReader();
@@ -1214,6 +1218,7 @@ $(".add-someone").click(function(event){
     })
 
     $("input[type='file']").change(function(event){
+        fs = false;
         const file = event.target.files[0];
         if (file) {
             const reader = new FileReader();
