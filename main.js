@@ -15,16 +15,12 @@ function openFullscreen() {
   }
 }
 
-let fs = false;
 
-if (!fs) {
-    document.documentElement.addEventListener("click", function(event){
-        if (!fs){
-            openFullscreen();
-            fs = true;
-        }
-    })
-}
+document.documentElement.addEventListener("click", function(event){
+    openFullscreen();
+
+})
+
 
 
 var codes = ['JYP5WmFug1dYTprSKrs6',
