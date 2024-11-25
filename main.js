@@ -2,28 +2,6 @@ var hidden = false;
 var db;
 var currentPerson;
 
-var elem = document.documentElement;
-
-/* View in fullscreen */
-function openFullscreen() {
-  if (elem.requestFullscreen) {
-    elem.requestFullscreen();
-  } else if (elem.webkitRequestFullscreen) { /* Safari */
-    elem.webkitRequestFullscreen();
-  } else if (elem.msRequestFullscreen) { /* IE11 */
-    elem.msRequestFullscreen();
-  }
-}
-
-let fs = false;
-
-document.documentElement.addEventListener("click", function(event){
-    if (!fs) {
-        openFullscreen();
-        fs = true;
-    }
-})
-
 
 
 var codes = ['JYP5WmFug1dYTprSKrs6',
@@ -664,7 +642,6 @@ function addScripts(id) {
         </div>`);
     
         $("input[type='file']").on('change', function(event) {
-            fs = false;
             let file = event.target.files[0];
             if (file) {
                 const reader = new FileReader();
@@ -1218,7 +1195,6 @@ $(".add-someone").click(function(event){
     })
 
     $("input[type='file']").change(function(event){
-        fs = false;
         const file = event.target.files[0];
         if (file) {
             const reader = new FileReader();
