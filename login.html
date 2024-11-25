@@ -48,24 +48,9 @@ if (!window.indexedDB) {
     }
 }
 
-var elem = document.documentElement;
-
-/* View in fullscreen */
-function openFullscreen() {
-  if (elem.requestFullscreen) {
-    elem.requestFullscreen();
-  } else if (elem.webkitRequestFullscreen) { /* Safari */
-    elem.webkitRequestFullscreen();
-  } else if (elem.msRequestFullscreen) { /* IE11 */
-    elem.msRequestFullscreen();
-  }
-}
-
 
 $(".start").click(function(event){
     event.stopImmediatePropagation();
-
-    openFullscreen();
 
     if ($("#name").val() !== '' && $("#user-id").val() !== '' && $("#pin").val() !== '') {
         let transaction = db2.transaction(["user"], "readwrite");
